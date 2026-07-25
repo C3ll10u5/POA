@@ -373,6 +373,29 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		],
 	},
 	{
+		name: "[Gen 9] IF PFA Draft",
+		searchShow: false,
+
+		mod: 'gen9infinitefusion',
+		ruleset: [
+			'Standard NatDex',
+			'Infinite Fusion Mod', 'IF Move Legality', 'No Event Moves', '!Obtainable Abilities', 'Species Reveal Clause', '!Nickname Clause', 
+			'+ Future', 'Sleep Moves Clause', 'Z-Move Clause',
+			'+item:barbaracite', '+item:chandelurite', '+item:chesnaughtite', '+item:clefablite', '+item:delphoxite', '+item:dragalgite', '+item:dragoninite', '+item:drampanite',
+			'+item:eelektrossite', '+item:emboarite', '+item:excadrite', '+item:falinksite', '+item:feraligite', '+item:floettite', '+item:froslassite', '+item:greninjite',
+			'+item:hawluchanite', '+item:malamarite', '+item:meganiumite', '+item:pyroarite', '+item:scolipite', '+item:scraftinite', '+item:skarmorite', '+item:starminite',
+			'+item:victreebelite', '+item:zygardite',
+			'+pokemon:floetteeternal',
+		],
+		banlist: [
+			'item:deepseatooth', 'item:leek', 'item:stick', 'item:lightball', 'item:kingsrock', 'item:quickpowder', 'item:razorfang', 'item:thickclub',
+			'ability:arenatrap', 'ability:comatose', 'ability:contrary', 'ability:disguise', 'ability:gorillatactics', 'ability:hugepower', 'ability:illusion', 'ability:imposter', 'ability:innardsout',
+			'ability:moody', 'ability:normalize', 'ability:powerconstruct', 'ability:purepower', 'ability:serenegrace', 'ability:shadowtag', 'ability:simple', 'ability:speedboost', 'ability:stakeout', 'ability:stench', 'ability:swordofruin', 'ability:wonderguard', 'ability:zerotohero',
+			'move:bellydrum', 'move:boltbeak', 'move:clangoroussoul', 'move:copycat', 'move:doubleironbash', 'move:electrify', 'move:extremespeed', 'move:filletaway', 'move:fishiousrend', 'move:geomancy', 'move:hiddenpower',
+			'move:lastrespects', 'move:noretreat', 'move:oblivionwing', 'move:pursuit', 'move:quiverdance', 'move:revivalblessing', 'move:shellsmash', 'move:shedtail', 'move:transform', 'move:vcreate', 'move:hail'
+		]
+	},
+	{
 		name: "[Gen 9] Ins NDL Draft",
 		searchShow: false,
 
