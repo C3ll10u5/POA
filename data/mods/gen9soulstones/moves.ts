@@ -897,7 +897,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		category: "Special",
 		basePowerCallback(pokemon, target, move) {return 100},
 		onModifyMove(move, pokemon) {
-			if (pokemon.getStat('atk', false, true) < pokemon.getStat('spa', false, true)) move.category = 'Special';
+			if (pokemon.getStat('atk', false, true) > pokemon.getStat('spa', false, true)) move.category = 'Physical';
 		},
 		isNonstandard: undefined,
 		desc: "Physical if user's Atk > Sp. Atk.",
@@ -5768,13 +5768,13 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		priority: 0,
 		flags: {metronome: 1, contact: 1, protect: 1, mirror: 1 },
 		secondary: {
-			chance: 50,
+			chance: 100,
 			status: 'frz',
 		},
 		target: "normal",
 		type: "Ice",
 		contestType: "Tough",
-		shortDesc: "50% chance to frostbite the target.",
+		shortDesc: "100% chance to frostbite the target.",
 	},
 
 	snowflakes: {

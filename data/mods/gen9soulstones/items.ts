@@ -398,7 +398,7 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 		shortDesc: "Holder's first successful Dragon-type attack will have 1.4x power. Single use.",
 		gen: 9,
 	},
-	electric: {
+	electricgem: {
 		inherit: true,
 		isNonstandard: undefined,
 		shortDesc: "Holder's first successful Electric-type attack will have 1.4x power. Single use.",

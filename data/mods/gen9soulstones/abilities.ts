@@ -2052,7 +2052,7 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		name: "Deep Chill",
 		rating: 2,
 		num: 0,
-		shortDesc: "30% to frostbite pokemon using physical moves against it.",
+		shortDesc: "30% to frostbite pokemon using Special moves against it.",
 	},
 	superconductive: {
 		onModifyAtkPriority: 5,
