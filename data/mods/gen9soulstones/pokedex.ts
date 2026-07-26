@@ -12075,8 +12075,8 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 		eggGroups: ["Soulstones"],
 		tags: ["Soulstones"],
 		requiredItem: "Dragapultite-S",
-		tier: "OU",
-		natDexTier: "OU",
+		tier: "Uber",
+		natDexTier: "Uber",
 	},
 	wimpodorion: {
 		num: 648,
