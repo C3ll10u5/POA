@@ -8458,7 +8458,7 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 		color: "Gray",
 		eggGroups: ["Soulstones"],
 		tags: ["Soulstones"],
-		requiredItem: "Torterrite-S",
+		requiredItem: "Torterranite-S",
 		tier: "OU",
 		natDexTier: "OU",
 	},
