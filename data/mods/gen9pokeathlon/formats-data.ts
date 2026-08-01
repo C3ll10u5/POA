@@ -804,6 +804,12 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		natDexTier: "UU",
 		isNonstandard: null,
 	},
+	utensitilemega: {
+		inherit: true,
+		tier: "UU",
+		natDexTier: "UU",
+		isNonstandard: null,
+	},
 	arcaspark: {
 		inherit: true,
 		tier: "OU",
