@@ -480,6 +480,17 @@ export const Items: ModdedItemDataTable = {
 		},
 		num: 0,
 	},
+	utensitite: {
+		name: "Utensitite",
+		desc: "If held by a Utensitile, this item allows it to Mega Evolve in battle.",
+		spritenum: -3,
+		megaStone: { "Utensitile": "Utensitile-Mega" },
+		itemUser: ["Utensitile"],
+		onTakeItem(item, source) {
+			return !item.megaStone?.[source.baseSpecies.baseSpecies];
+		},
+		num: 0,
+	},
 };
 
 const Manual = Utils.deepClone(Items);
