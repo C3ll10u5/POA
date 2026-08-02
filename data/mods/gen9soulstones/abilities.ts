@@ -664,6 +664,17 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		},
 		shortDesc: "Sets Electric Terrain on start. 1.33x Atk and SpA in Electric Terrain."
 	},
+	bigpecks: {
+		inherit: true,
+		onTryBoost(boost, target, source, effect) {},
+		onBasePowerPriority: 19,
+		onBasePower(basePower, attacker, defender, move) {
+			if (defender.hp <= defender.maxhp / 2) {
+				return this.chainModify(1.3);
+			}
+		},
+		shortDesc: "30% more damage to foes below half HP.",
+	},
 
 	// Additions
 	affection: {
@@ -906,13 +917,15 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 	conductor: {
 		onModifyMovePriority: -5,
 		onModifyMove(move) {
-			if (!move.ignoreImmunity) move.ignoreImmunity = {};
-			if (move.ignoreImmunity !== true) {
-				move.ignoreImmunity['Electric'] = true;
+			if (move.type === 'Electric') {
+				if (!move.ignoreImmunity) move.ignoreImmunity = {};
+				if (move.ignoreImmunity !== true) {
+					move.ignoreImmunity['Electric'] = true;
+				}
+				move.onEffectiveness = function (typeMod, t, type, m) { //I sure hope this works!
+					if (type === 'Electric') return 0;
+				};
 			}
-			move.onEffectiveness = function (typeMod, t, type, m) { //I sure hope this works!
-				if (type === 'Electric') return 0;
-			};
 		},
 		flags: { breakable: 1 },
 		name: "Conductor",
@@ -1322,7 +1335,7 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		name: "Light Bulb",
 		rating: 3.5,
 		num: 0,
-		shortDesc: "This Pokemon's Light power is 2x; Fire power against it is halved.",
+		shortDesc: "This Pokemon's Light power is 2x; Dark power against it is halved.",
 	},
 	maelstrom: {
 		onFoeTrapPokemon(pokemon) {
@@ -1462,7 +1475,7 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 			}
 		},
 		flags: {},
-		name: "Hivemind",
+		name: "Hive Mind",
 		rating: 3.5,
 		num: 0,
 		shortDesc: "This Pokemon's offensive stat is multiplied by 1.5 while using a Bug-type attack.",

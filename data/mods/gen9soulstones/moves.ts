@@ -1125,6 +1125,8 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		critRatio: 2,
 		isNonstandard: undefined,
+		desc: "Has a higher chance for a critical hit.",
+		shortDesc: "High critical hit ratio.",
 	},
 	fierywrath: {
 		inherit: true,
@@ -1265,15 +1267,15 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		isNonstandard: undefined,
 		basePowerCallback(pokemon, target, move) {
 			let bp = move.basePower;
-			const rollingkickData = pokemon.volatiles['rollingkick'];
-			if (rollingkickData?.hitCount) {
-				bp *= 2 ** rollingkickData.contactHitCount;
+			const fireballData = pokemon.volatiles['rollingkick'];
+			if (fireballData?.hitCount) {
+				bp *= 2 ** fireballData.contactHitCount;
 			}
-			if (rollingkickData && pokemon.status !== 'slp') {
-				rollingkickData.hitCount++;
-				rollingkickData.contactHitCount++;
-				if (rollingkickData.hitCount < 5) {
-					rollingkickData.duration = 2;
+			if (fireballData && pokemon.status !== 'slp') {
+				fireballData.hitCount++;
+				fireballData.contactHitCount++;
+				if (fireballData.hitCount < 5) {
+					fireballData.duration = 2;
 				}
 			}
 			if (pokemon.volatiles['defensecurl']) {
@@ -1289,17 +1291,17 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 			if (move.sourceEffect) pokemon.lastMoveTargetLoc = pokemon.getLocOf(target);
 		},
 		onAfterMove(source, target, move) {
-			const rollingkickData = source.volatiles["rollingkick"];
+			const fireballData = source.volatiles["rollingkick"];
 			if (
-				rollingkickData &&
-				rollingkickData.hitCount === 5 &&
-				rollingkickData.contactHitCount < 5
+				fireballData &&
+				fireballData.hitCount === 5 &&
+				fireballData.contactHitCount < 5
 				// this conditions can only be met in gen7 and gen8dlc1
 				// see `disguise` and `iceface` abilities in the resp mod folders
 			) {
 				source.addVolatile("rolloutstorage");
 				source.volatiles["rolloutstorage"].contactHitCount =
-					rollingkickData.contactHitCount;
+					fireballData.contactHitCount;
 			}
 		},
 		condition: {
@@ -4404,10 +4406,11 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		priority: 0,
 		flags: {metronome: 1,  snatch: 1},
 		onHit(pokemon) {
-			
+			const goodStat = pokemon.getBestStat(true, true);
+
 			// This is literally the function for getBestStat, but I didn't want to add another function to the sim
 			let badStat: StatIDExceptHP = 'atk';
-			let badStatVal = 0;
+			let badStatVal = pokemon.getStat(goodStat, true, true);
 			const stats: StatIDExceptHP[] = ['atk', 'def', 'spa', 'spd', 'spe'];
 			for (const i of stats) {
 				if (pokemon.getStat(i, true, true) < badStatVal) {
@@ -4416,7 +4419,6 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 				}
 			}
 
-			const goodStat = pokemon.getBestStat(true, true);
 			if (pokemon.boosts[goodStat] >= 6 && pokemon.boosts[badStat] <= -6) return false;
 			this.boost({ [goodStat]: 1, [badStat]: 1 }, pokemon);
 		},
@@ -4711,6 +4713,72 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		type: "Fire",
 		contestType: "Tough",
 		shortDesc: "Raises the user's Atk and Sp. Def by 1.",
+	},
+
+	fireball: {
+		accuracy: 90,
+		basePower: 40,
+		basePowerCallback(pokemon, target, move) {
+			let bp = move.basePower;
+			const fireballData = pokemon.volatiles['fireball'];
+			if (fireballData?.hitCount) {
+				bp *= 2 ** fireballData.contactHitCount;
+			}
+			if (fireballData && pokemon.status !== 'slp') {
+				fireballData.hitCount++;
+				fireballData.contactHitCount++;
+				if (fireballData.hitCount < 5) {
+					fireballData.duration = 2;
+				}
+			}
+			if (pokemon.volatiles['defensecurl']) {
+				bp *= 2;
+			}
+			this.debug(`BP: ${bp}`);
+			return bp;
+		},
+		category: "Physical",
+		name: "Fire Ball",
+		pp: 20,
+		priority: 0,
+		flags: { contact: 1, protect: 1, mirror: 1, metronome: 1, failinstruct: 1, noparentalbond: 1 },
+		onModifyMove(move, pokemon, target) {
+			if (pokemon.volatiles['fireball'] || pokemon.status === 'slp' || !target) return;
+			pokemon.addVolatile('fireball');
+			if (move.sourceEffect) pokemon.lastMoveTargetLoc = pokemon.getLocOf(target);
+		},
+		onAfterMove(source, target, move) {
+			const fireballData = source.volatiles["fireball"];
+			if (
+				fireballData &&
+				fireballData.hitCount === 5 &&
+				fireballData.contactHitCount < 5
+				// this conditions can only be met in gen7 and gen8dlc1
+				// see `disguise` and `iceface` abilities in the resp mod folders
+			) {
+				source.addVolatile("rolloutstorage");
+				source.volatiles["rolloutstorage"].contactHitCount =
+					fireballData.contactHitCount;
+			}
+		},
+		condition: {
+			duration: 1,
+			onLockMove: 'fireball',
+			onStart() {
+				this.effectState.hitCount = 0;
+				this.effectState.contactHitCount = 0;
+			},
+			onResidual(target) {
+				if (target.lastMove && target.lastMove.id === 'struggle') {
+					// don't lock
+					delete target.volatiles['fireball'];
+				}
+			},
+		},
+		target: "normal",
+		type: "Fire",
+		desc: "If this move is successful, the user is locked into this move and cannot make another move until it misses, 5 turns have passed, or the attack cannot be used. Power doubles with each successful hit of this move and doubles again if Defense Curl was used previously by the user. If this move is called by Sleep Talk, the move is used for one turn.",
+		shortDesc: "Power doubles with each hit. Repeats for 5 turns.",
 	},
 
 	flamevolley: {
@@ -7704,8 +7772,10 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		priority: 0,
 		flags: {metronome: 1, sound: 1, snatch: 1 },
 		onHit(pokemon) {
+			const goodStat = pokemon.getBestStat(true, true);
+
 			let badStat: StatIDExceptHP = 'atk';
-			let badStatVal = 0;
+			let badStatVal = pokemon.getStat(goodStat, true, true);
 			const stats: StatIDExceptHP[] = ['atk', 'def', 'spa', 'spd', 'spe'];
 			for (const i of stats) {
 				if (pokemon.getStat(i, true, true) < badStatVal) {
@@ -7714,7 +7784,6 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 				}
 			}
 
-			const goodStat = pokemon.getBestStat(true, true);
 			if (pokemon.boosts[goodStat] >= 6 && pokemon.boosts[badStat] <= -6) return false;
 			this.boost({ [goodStat]: 1, [badStat]: 1 }, pokemon);
 		},
@@ -12076,8 +12145,10 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		priority: 0,
 		flags: {metronome: 1, snatch: 1 },
 		onHit(pokemon) {
+			const goodStat = pokemon.getBestStat(true, true);
+
 			let badStat: StatIDExceptHP = 'atk';
-			let badStatVal = 0;
+			let badStatVal = pokemon.getStat(goodStat, true, true);
 			const stats: StatIDExceptHP[] = ['atk', 'def', 'spa', 'spd', 'spe'];
 			for (const i of stats) {
 				if (pokemon.getStat(i, true, true) < badStatVal) {
@@ -12086,7 +12157,6 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 				}
 			}
 
-			const goodStat = pokemon.getBestStat(true, true);
 			if (pokemon.boosts[goodStat] >= 6 && pokemon.boosts[badStat] <= -6) return false;
 			this.boost({ [goodStat]: 1, [badStat]: 1 }, pokemon);
 		},
