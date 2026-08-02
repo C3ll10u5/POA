@@ -2351,12 +2351,16 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 	},
 	thousandarrows: {
 		inherit: true,
+		onModifyMove(move, pokemon, target) {
+			if (target && target.hasType('Cosmic') && move.type === 'Ground') {
+				move.ignoreImmunity = false;
+			}
+		},
 		onEffectiveness(typeMod, target, type, move) {
 			if (move.type !== 'Ground') return;
 			if (!target) return; // avoid crashing when called from a chat plugin
 			// ignore effectiveness if the target is Flying type and immune to Ground
 			if (!target.runImmunity('Ground')) {
-				if (target.hasType('Cosmic')) return 3;
 				if (target.hasType('Flying')) return 0;
 			}
 		},

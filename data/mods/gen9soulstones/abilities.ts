@@ -199,10 +199,10 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		onDamagePriority: 1,
 		onDamage(damage, target, source, effect) {
 			if (effect.id === 'psn' || effect.id === 'tox') {
-				return false;
+				return damage / 2;
 			}
 		},
-		shortDesc: "While this Pokemon is poisoned, no HP loss and its physical attacks have 1.5x power.",
+		shortDesc: "If this Pokemon is poisoned, its Physical moves have 1.5x power; half damage from poison.",
 	},
 	liquidvoice: {
 		inherit: true,
@@ -2072,6 +2072,11 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		onModifyAtk(atk, pokemon) {
 			if (pokemon.status === 'frz') {
 				return this.chainModify(1.5);
+			}
+		},
+		onDamage(damage, target, source, effect) {
+			if (effect && effect.id === 'frb') {
+				return damage / 2;
 			}
 		},
 		flags: {},
