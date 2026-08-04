@@ -1024,6 +1024,24 @@ export const Rulesets: import('../sim/dex-formats').FormatDataTable = {
 			return problems;
 		},
 	},
+	directsleepmovesclause: {
+		effectType: 'ValidatorRule',
+		name: 'Direct Sleep Moves Clause',
+		desc: "Bans all moves that induce sleep, except Yawn",
+		onBegin() {
+			this.add('rule', 'Direct Sleep Moves Clause: Sleep-inducing moves are banned, except Yawn');
+		},
+		onValidateSet(set) {
+			const problems = [];
+			if (set.moves) {
+				for (const id of set.moves) {
+					const move = this.dex.moves.get(id);
+					if (move.status === 'slp') problems.push(move.name + ' is banned by Direct Sleep Moves Clause.');
+				}
+			}
+			return problems;
+		},
+	},
 	gravitysleepclause: {
 		effectType: 'ValidatorRule',
 		name: 'Gravity Sleep Clause',
