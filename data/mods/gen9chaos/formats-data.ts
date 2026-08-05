@@ -129,7 +129,7 @@ export const FormatsData: import("../../../sim/dex-species").ModdedSpeciesFormat
 	},
 	birdo: {
 		inherit: true,
-		natDexTier: "Uber",
+		natDexTier: "OU",
 	},
 	exor: {
 		inherit: true,
@@ -193,7 +193,7 @@ export const FormatsData: import("../../../sim/dex-species").ModdedSpeciesFormat
 	},
 	superfly: {
 		inherit: true,
-		natDexTier: "Uber",
+		natDexTier: "OU",
 	},
 	spiritombmega: {
 		inherit: true,
@@ -3687,6 +3687,6 @@ export const FormatsData: import("../../../sim/dex-species").ModdedSpeciesFormat
 	},
 	bowser: {
 		inherit: true,
-		natDexTier: "Uber",
+		natDexTier: "OU",
 	},
 };

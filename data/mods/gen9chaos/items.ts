@@ -120,6 +120,11 @@ export const Items: ModdedItemDataTable = {
 		isNonstandard: null,
 		gen: 9,
 	},
+	chesnaughtite: {
+		inherit: true,
+		isNonstandard: null,
+		gen: 9,
+	},
 	delphoxite: {
 		inherit: true,
 		isNonstandard: null,
