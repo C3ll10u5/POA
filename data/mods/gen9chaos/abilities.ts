@@ -1276,7 +1276,7 @@ export const Abilities: ModdedAbilityDataTable = {
 		name: "As Above",
 		rating: 4,
 		num: 0,
-		shortDesc: "While on field, stat changes have the opposite effect. Breaks upon contact with user.",
+		shortDesc: "While on field, stat changes have the opposite effect. Breaks upon any hit.",
 	},
 	soulsymphony: {
 		onModifyTypePriority: -1,
