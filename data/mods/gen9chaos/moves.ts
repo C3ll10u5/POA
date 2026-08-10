@@ -2427,7 +2427,7 @@ export const Moves: ModdedMoveDataTable = {
 		target: "normal",
 		type: "Ghost",
 		contestType: "Tough",
-		shortDesc: "Perish song if user is not hit before moving.",
+		shortDesc: "Sets Perish Song.",
 	},
 	clayhaymaker: {
 		num: 0,
