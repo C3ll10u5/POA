@@ -1263,7 +1263,6 @@ export const Abilities: ModdedAbilityDataTable = {
 		},
 		onDamagingHitOrder: 1,
 		onDamagingHit(damage, target, source, move) {
-			if (this.checkMoveMakesContact(move, source, target, true) && target.abilityState.distortion) {
 				target.abilityState.distortion = false;
 				this.add('-end', target, 'As Above');
 			}
