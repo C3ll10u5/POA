@@ -896,7 +896,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 	},
 	slithereina: {
 		inherit: true,
-		tier: "UU",
+		tier: "Uber",
 		natDexTier: "OU",
 		isNonstandard: null,
 	},
