@@ -2983,6 +2983,23 @@ export const Pokedex: ModdedSpeciesDataTable = {
 		natDexTier: "OU",
 		doublesTier: "DOU",
 	},
+	roseradegigas: {
+		num: 407,
+		name: "Roserade-Gigas",
+		types: ["Grass", "Fire"],
+		baseStats: { hp: 55, atk: 85, def: 60, spa: 125, spd: 100, spe: 90 },
+		abilities: { 0: "Dancer", 1: "Flame Body", H: "Technician" },
+		heightm: 0.9,
+		weightkg: 14.5,
+		color: "Green",
+		tags: ["Pokeathlon"],
+		eggGroups: ["Pokeathlon", "POA"],
+		baseSpecies: "Roserade",
+		forme: "Gigas",
+		tier: "OU",
+		natDexTier: "OU",
+		doublesTier: "DOU",
+	},
 };
 
 const Manual = Utils.deepClone(Pokedex);

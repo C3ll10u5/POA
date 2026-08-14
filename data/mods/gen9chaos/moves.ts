@@ -2956,6 +2956,26 @@ export const Moves: ModdedMoveDataTable = {
 		contestType: "Clever",
 		shortDesc: "Electric version hits again two turns after being used.",
 	},
+	ashenpirouette: {
+		num: 0,
+		accuracy: 100,
+		basePower: 70,
+		category: "Special",
+		name: "Ashen Pirouette",
+		pp: 10,
+		priority: 0,
+		flags: { protect: 1, mirror: 1, metronome: 1, dance: 1 },
+		onHit(pokemon, source) {
+			const item = pokemon.getItem();
+			if (pokemon.takeItem(source) && !pokemon.hasType('Fire')) {
+				this.add('-enditem', pokemon, item.name, '[from] move: Incinerate');
+			}
+		},
+		target: "allAdjacent",
+		type: "Fire",
+		contestType: "Tough",
+		shortDesc: "Hits adjacent Pokemon. Destroys the foe(s) item.",
+	},
 };
 
 const Manual = Utils.deepClone(Moves);
