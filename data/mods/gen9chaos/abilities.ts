@@ -1265,7 +1265,6 @@ export const Abilities: ModdedAbilityDataTable = {
 		onDamagingHit(damage, target, source, move) {
 				target.abilityState.distortion = false;
 				this.add('-end', target, 'As Above');
-			}
 		},
 		onSwitchInPriority: 1,
 		onSwitchIn(pokemon) {
