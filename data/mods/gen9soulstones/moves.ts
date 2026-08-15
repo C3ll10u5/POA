@@ -656,6 +656,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		inherit: true,
 		pp: 15,
 		type: "Fairy",
+		basePower: 70,
 	},
 	leechlife: {
 		inherit: true,
@@ -13222,7 +13223,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 		basePower: 80,
 		accuracy: 100,
 		category: "Special",
-		name: "Chain Lightning",
+		name: "Typhoon",
 		pp: 10,
 		priority: 0,
 		flags: {metronome: 1, protect: 1, mirror: 1, wind: 1 },

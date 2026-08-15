@@ -135,14 +135,14 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		onModifyAccuracyPriority: undefined,
 		onModifyAccuracy(accuracy) {},
 		onModifySpDPriority: -1,
-		onModifySpD(spd) {
+		onModifyDef(def) {
 			if (this.field.isWeather('sandstorm')) {
-				this.debug('Sand Veil - SpD boost');
+				this.debug('Sand Veil - Def boost');
 				return this.chainModify(1.5);
 			}
 		},
-		desc: "If Sandstorm is active, SpD is 1.5x. This Pokemon takes no damage from Sandstorm.",
-		shortDesc: "If Sandstorm is active, SpD is 1.5x. This Pokemon takes no damage from Sandstorm.",
+		desc: "If Sandstorm is active, Def is 1.5x. This Pokemon takes no damage from Sandstorm.",
+		shortDesc: "If Sandstorm is active, Def is 1.5x. This Pokemon takes no damage from Sandstorm.",
 	},
 	snowcloak: {
 		inherit: true,
@@ -152,14 +152,14 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		onModifyAccuracyPriority: undefined,
 		onModifyAccuracy(accuracy) {},
 		onModifyDefPriority: -1,
-		onModifyDef(def) {
+		onModifySpD(spd) {
 			if (this.field.isWeather(['hail', 'snowscape'])) {
-				this.debug('Snow Cloak - Def boost');
+				this.debug('Snow Cloak - SpD boost');
 				return this.chainModify(1.5);
 			}
 		},
-		desc: "If Hail or Snow is active, Def is 1.5x. This Pokemon takes no damage from Hail.",
-		shortDesc: "If Hail or Snow is active, Def is 1.5x. This Pokemon takes no damage from Hail.",
+		desc: "If Hail or Snow is active, Sp. Def is 1.5x. This Pokemon takes no damage from Hail.",
+		shortDesc: "If Hail or Snow is active, Sp. Def is 1.5x. This Pokemon takes no damage from Hail.",
 	},
 	icebody: {
 		inherit: true,
@@ -221,9 +221,9 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 			if (move.ignoreImmunity !== true) {
 				move.ignoreImmunity['Poison'] = true;
 			}
-		},
-		onEffectiveness(typeMod, target, type, move) {
-			if (move.type === 'Poison' && type === 'Poison') return 0;
+			move.onEffectiveness = function (typeMod, t, type, m) { //I sure hope this works!
+				if (type === 'Poison') return 0;
+			};
 		},
 		shortDesc: "User can poison a Pokemon regardless of typing. Poison moves are neutral on Poison and Steel.",
 	},
