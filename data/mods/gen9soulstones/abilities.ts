@@ -135,14 +135,14 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		onModifyAccuracyPriority: undefined,
 		onModifyAccuracy(accuracy) {},
 		onModifySpDPriority: -1,
-		onModifySpD(spd) {
+		onModifyDef(def) {
 			if (this.field.isWeather('sandstorm')) {
-				this.debug('Sand Veil - SpD boost');
+				this.debug('Sand Veil - Def boost');
 				return this.chainModify(1.5);
 			}
 		},
-		desc: "If Sandstorm is active, SpD is 1.5x. This Pokemon takes no damage from Sandstorm.",
-		shortDesc: "If Sandstorm is active, SpD is 1.5x. This Pokemon takes no damage from Sandstorm.",
+		desc: "If Sandstorm is active, Def is 1.5x. This Pokemon takes no damage from Sandstorm.",
+		shortDesc: "If Sandstorm is active, Def is 1.5x. This Pokemon takes no damage from Sandstorm.",
 	},
 	snowcloak: {
 		inherit: true,
@@ -152,14 +152,14 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		onModifyAccuracyPriority: undefined,
 		onModifyAccuracy(accuracy) {},
 		onModifyDefPriority: -1,
-		onModifyDef(def) {
+		onModifySpD(spd) {
 			if (this.field.isWeather(['hail', 'snowscape'])) {
-				this.debug('Snow Cloak - Def boost');
+				this.debug('Snow Cloak - SpD boost');
 				return this.chainModify(1.5);
 			}
 		},
-		desc: "If Hail or Snow is active, Def is 1.5x. This Pokemon takes no damage from Hail.",
-		shortDesc: "If Hail or Snow is active, Def is 1.5x. This Pokemon takes no damage from Hail.",
+		desc: "If Hail or Snow is active, Sp. Def is 1.5x. This Pokemon takes no damage from Hail.",
+		shortDesc: "If Hail or Snow is active, Sp. Def is 1.5x. This Pokemon takes no damage from Hail.",
 	},
 	icebody: {
 		inherit: true,
@@ -199,10 +199,10 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		onDamagePriority: 1,
 		onDamage(damage, target, source, effect) {
 			if (effect.id === 'psn' || effect.id === 'tox') {
-				return false;
+				return damage / 2;
 			}
 		},
-		shortDesc: "While this Pokemon is poisoned, no HP loss and its physical attacks have 1.5x power.",
+		shortDesc: "If this Pokemon is poisoned, its Physical moves have 1.5x power; half damage from poison.",
 	},
 	liquidvoice: {
 		inherit: true,
@@ -221,9 +221,9 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 			if (move.ignoreImmunity !== true) {
 				move.ignoreImmunity['Poison'] = true;
 			}
-		},
-		onEffectiveness(typeMod, target, type, move) {
-			if (move.type === 'Poison' && type === 'Poison') return 0;
+			move.onEffectiveness = function (typeMod, t, type, m) { //I sure hope this works!
+				if (type === 'Poison') return 0;
+			};
 		},
 		shortDesc: "User can poison a Pokemon regardless of typing. Poison moves are neutral on Poison and Steel.",
 	},
@@ -432,13 +432,13 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 	stakeout: {
 		inherit: true,
 		onModifyAtk(atk, attacker, defender) {
-			if (defender.activeMoveActions == 0) {
+			if (!defender.activeTurns) {
 				this.debug('Stakeout boost');
 				return this.chainModify(1.3);
 			}
 		},
 		onModifySpA(atk, attacker, defender) {
-			if (defender.activeMoveActions == 0) {
+			if (!defender.activeTurns) {
 				this.debug('Stakeout boost');
 				return this.chainModify(1.3);
 			}
@@ -544,8 +544,8 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 			let boosted = true;
 			for (const target of this.getAllActive()) {
 				if (target === pokemon) continue;
-				if (pokemon.storedStats.spe < target.storedStats.spe) {
-					boosted = false;
+				if (target.newlySwitched || this.queue.willMove(target)) {
+					boosted = true;
 					break;
 				}
 			}
@@ -554,7 +554,7 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 				return this.chainModify(1.3);
 			}
 		},
-		shortDesc: "1.3x power against slower foes.",
+		shortDesc: "1.3x power if user moves before target.",
 	},
 	flareboost: {
 		inherit: true,
@@ -632,6 +632,48 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		},
 		desc: "50% chance this Pokemon's ally has its non-volatile status condition cured at the end of each turn.",
 		shortDesc: "50% chance this Pokemon's ally has its status cured at the end of each turn.",
+	},
+	transistor: {
+		inherit: true,
+		onModifyAtk(atk, attacker, defender, move) {
+			if (move.type === 'Electric') {
+				this.debug('Transistor boost');
+				return this.chainModify(1.5);
+			}
+		},
+		onModifySpA(atk, attacker, defender, move) {
+			if (move.type === 'Electric') {
+				this.debug('Transistor boost');
+				return this.chainModify(1.5);
+			}
+		},
+		shortDesc: "This Pokemon's offensive stat is multiplied by 1.5 while using an Electric-type attack.",
+	},
+	hadronengine: {
+		inherit: true,
+		onModifyAtkPriority: 5,
+		onModifyAtk(atk, pokemon) {
+			if (this.field.isTerrain('electricterrain')) {
+				return this.chainModify(1.33);
+			}
+		},
+		onModifySpA(spa, pokemon) {
+			if (this.field.isTerrain('electricterrain')) {
+				return this.chainModify(1.33);
+			}
+		},
+		shortDesc: "Sets Electric Terrain on start. 1.33x Atk and SpA in Electric Terrain."
+	},
+	bigpecks: {
+		inherit: true,
+		onTryBoost(boost, target, source, effect) {},
+		onBasePowerPriority: 19,
+		onBasePower(basePower, attacker, defender, move) {
+			if (defender.hp <= defender.maxhp / 2) {
+				return this.chainModify(1.3);
+			}
+		},
+		shortDesc: "30% more damage to foes below half HP.",
 	},
 
 	// Additions
@@ -875,13 +917,15 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 	conductor: {
 		onModifyMovePriority: -5,
 		onModifyMove(move) {
-			if (!move.ignoreImmunity) move.ignoreImmunity = {};
-			if (move.ignoreImmunity !== true) {
-				move.ignoreImmunity['Electric'] = true;
+			if (move.type === 'Electric') {
+				if (!move.ignoreImmunity) move.ignoreImmunity = {};
+				if (move.ignoreImmunity !== true) {
+					move.ignoreImmunity['Electric'] = true;
+				}
+				move.onEffectiveness = function (typeMod, t, type, m) { //I sure hope this works!
+					if (type === 'Electric') return 0;
+				};
 			}
-			move.onEffectiveness = function (typeMod, t, type, m) { //I sure hope this works!
-				if (type === 'Electric') return 0;
-			};
 		},
 		flags: { breakable: 1 },
 		name: "Conductor",
@@ -1027,20 +1071,20 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 	ethereal: { 
 		onTryHit(target, source, move) {
 			if (!move.flags.contact) return;
-			if (target.etherealLost) return;
+			if (target.abilityState.etherealLost) return;
 				if (move.smartTarget) {
 					move.smartTarget = false;
 				} else {
 					this.add('-immune', target, '[from] ability: Ethereal');
 				}
-				target.etherealLost = true;
+				target.abilityState.etherealLost = true;
 				return null;
 		},
 		flags: { failroleplay: 1, noreceiver: 1, noentrain: 1, failskillswap: 1, breakable: 1 },
 		name: "Ethereal",
 		rating: 5,
 		num: 0,
-		shortDesc: "User is immune to one contact move per battle."
+		shortDesc: "User is immune to one contact move per switch-in."
 	},
 	fortification: {
 		onDamage(damage, target, source, effect) {
@@ -1291,7 +1335,7 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		name: "Light Bulb",
 		rating: 3.5,
 		num: 0,
-		shortDesc: "This Pokemon's Light power is 2x; Fire power against it is halved.",
+		shortDesc: "This Pokemon's Light power is 2x; Dark power against it is halved.",
 	},
 	maelstrom: {
 		onFoeTrapPokemon(pokemon) {
@@ -1431,7 +1475,7 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 			}
 		},
 		flags: {},
-		name: "Hivemind",
+		name: "Hive Mind",
 		rating: 3.5,
 		num: 0,
 		shortDesc: "This Pokemon's offensive stat is multiplied by 1.5 while using a Bug-type attack.",
@@ -2021,13 +2065,18 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 		name: "Deep Chill",
 		rating: 2,
 		num: 0,
-		shortDesc: "30% to frostbite pokemon using physical moves against it.",
+		shortDesc: "30% to frostbite pokemon using Special moves against it.",
 	},
 	superconductive: {
 		onModifyAtkPriority: 5,
 		onModifyAtk(atk, pokemon) {
 			if (pokemon.status === 'frz') {
 				return this.chainModify(1.5);
+			}
+		},
+		onDamage(damage, target, source, effect) {
+			if (effect && effect.id === 'frb') {
+				return damage / 2;
 			}
 		},
 		flags: {},
@@ -2156,8 +2205,8 @@ export const Abilities: import('../../../sim/dex-abilities').ModdedAbilityDataTa
 			return this.chainModify(1.4);
 		},
 		onAfterMove(source, target, move) {
-			if (move.category === 'Physical') source.boostBy({atk: -1})
-			if (move.category === 'Special') source.boostBy({spa: -1})
+			if (move.category === 'Physical') this.boost({ atk: -1 }, source, source);
+			if (move.category === 'Special') this.boost({ spa: -1 }, source, source);
 		},
 		flags: {},
 		name: "Impulsive",

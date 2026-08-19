@@ -95,8 +95,6 @@ export const treasures: { [k: string]: string } = {
 	mysticwater: 'adaptability',
 };
 
-const vacuumItems = ['assaultvest', 'eviolite', 'deepseascale', 'metalpowder'];
-
 export const Abilities: ModdedAbilityDataTable = {
 	// MODDED
 	proteanmaxima: {
@@ -1166,17 +1164,13 @@ export const Abilities: ModdedAbilityDataTable = {
 		shortDesc: "Boosts moves that require a charge turn by 50%.",
 	},
 	vacuumbubble: { // Pressure interaction coded into pressure
-		onModifyMove(move, pokemon, target) {
-			move.ignoreEvasion = true;
-			move.ignoreDefensive = true;
-		},
-		onPrepareHit(source, target, move) {
-			if (vacuumItems.includes(this.toID(target.item))) {
+		onBeforeMove(source, target, move) {
+			if (target.item) {
 				target.speciesState.item = target.getItem();
 				target.setItem('');
 			}
 		},
-		onHit(source, target, move) {
+		onAfterMove(source, target, move) {
 			if (target.speciesState.item) {
 				target.setItem(target.speciesState.item);
 				target.speciesState.item = null;
@@ -1186,7 +1180,7 @@ export const Abilities: ModdedAbilityDataTable = {
 		name: "Vacuum Bubble",
 		rating: 4,
 		num: 0,
-		shortDesc: "Ignores foe's defense boosts, including items, when attacking. Immune to Pressure.",
+		shortDesc: "Ignores foe's items when attacking. Immune to Pressure.",
 	},
 	hivemind: {
 		onSwitchOut(pokemon) {
@@ -1263,10 +1257,8 @@ export const Abilities: ModdedAbilityDataTable = {
 		},
 		onDamagingHitOrder: 1,
 		onDamagingHit(damage, target, source, move) {
-			if (this.checkMoveMakesContact(move, source, target, true) && target.abilityState.distortion) {
 				target.abilityState.distortion = false;
 				this.add('-end', target, 'As Above');
-			}
 		},
 		onSwitchInPriority: 1,
 		onSwitchIn(pokemon) {
@@ -1277,7 +1269,7 @@ export const Abilities: ModdedAbilityDataTable = {
 		name: "As Above",
 		rating: 4,
 		num: 0,
-		shortDesc: "While on field, stat changes have the opposite effect. Breaks upon contact with user.",
+		shortDesc: "While on field, stat changes have the opposite effect. Breaks upon any hit.",
 	},
 	soulsymphony: {
 		onModifyTypePriority: -1,
@@ -1396,12 +1388,14 @@ export const Abilities: ModdedAbilityDataTable = {
 					...moveData, 
 				onHit(target) {
 					if (target.getAbility().flags['cantsuppress']) return;
-					if (target.newlySwitched || this.queue.willMove(target)) return;
 					target.addVolatile('gastroacid');
 				},
 				};
 				target.side.slotConditions[target.position]['futuremove'].moveData = moveData;
 			}
+		},
+		onSourceDamagingHit(damage, target, source, move) {
+			if (move.flags['futuremove'] && !target.getAbility().flags['cantsuppress']) target.addVolatile('gastroacid');
 		},
 		flags: {},
 		name: "Zeitwinder",

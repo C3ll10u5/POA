@@ -3390,7 +3390,7 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 		num: 25,
 		name: "Pikachu-Ash",
 		types: ["Electric"],
-		baseStats: { hp: 101, atk: 80, def: 51, spa: 72, spd: 61, spe: 115 },
+		baseStats: { hp: 100, atk: 82, def: 51, spa: 72, spd: 60, spe: 115 },
 		abilities: { 0: "Supercharged" },
 		heightm: 0.4,
 		weightkg: 6,

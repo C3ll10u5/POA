@@ -398,7 +398,7 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 		shortDesc: "Holder's first successful Dragon-type attack will have 1.4x power. Single use.",
 		gen: 9,
 	},
-	electric: {
+	electricgem: {
 		inherit: true,
 		isNonstandard: undefined,
 		shortDesc: "Holder's first successful Electric-type attack will have 1.4x power. Single use.",
@@ -3952,5 +3952,30 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 		num: 0,
 		gen: 9,
 		shortDesc: "Changes user's ability to Pastel Veil.",
+	},
+	topographymap: {
+		name: "Topography Map",
+		spritenum: -6,
+		fling: {
+			basePower: 10,
+		},
+		onStart(target) {
+			for (const moveSlot of target.moveSlots) {
+				const moveid = moveSlot.id;
+				const move = this.dex.moves.get(moveid);
+				if (move.terrain) {
+					this.actions.useMove(move, this.effectState.target);
+					break
+				}
+			}
+		},
+		onTakeItem(item, source) {
+			if (!this.activeMove) return false;
+			if (['knockoff', 'thief', 'covet', 'turbulence', 'spoil', 'powerwash', 'quakeslam', 'disturb', 'mindmeld'].includes(this.activeMove.id)) return false;
+		},
+		num: 0,
+		gen: 9,
+		itemUser: ["Castform-Orion"],
+		shortDesc: "Castform-Orion only: On start uses the first terrain move it knows.",
 	},
 };

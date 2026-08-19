@@ -568,7 +568,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 	},
 	omecha: {
 		inherit: true,
-		tier: "OU",
+		tier: "Uber",
 		natDexTier: "UU",
 		isNonstandard: null,
 	},
@@ -756,6 +756,12 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		natDexTier: "OU",
 		isNonstandard: null,
 	},
+	dryguaromega: {
+		inherit: true,
+		tier: "OU",
+		natDexTier: "OU",
+		isNonstandard: null,
+	},
 	varkacosm: {
 		inherit: true,
 		tier: "OU",
@@ -793,6 +799,12 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		isNonstandard: null,
 	},
 	utensitile: {
+		inherit: true,
+		tier: "UU",
+		natDexTier: "UU",
+		isNonstandard: null,
+	},
+	utensitilemega: {
 		inherit: true,
 		tier: "UU",
 		natDexTier: "UU",
@@ -884,7 +896,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 	},
 	slithereina: {
 		inherit: true,
-		tier: "UU",
+		tier: "Uber",
 		natDexTier: "OU",
 		isNonstandard: null,
 	},
@@ -1021,6 +1033,18 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 		isNonstandard: null,
 	},
 	cerebaal: {
+		inherit: true,
+		tier: "OU",
+		natDexTier: "OU",
+		isNonstandard: null,
+	},
+	gourgeistsento: {
+		inherit: true,
+		tier: "OU",
+		natDexTier: "OU",
+		isNonstandard: null,
+	},
+	roseradegigas: {
 		inherit: true,
 		tier: "OU",
 		natDexTier: "OU",

@@ -751,7 +751,8 @@ export class Side {
 		const mixandmega = this.battle.format.mod === 'mixandmega';
 		const multipleMega = this.battle.format.ruleTable?.has('multiplemega');
 		const megaLimit = Number(this.battle.format.ruleTable?.valueRules.get('multiplemega') || 1);
-		let megaCount = 0;
+		let megaCount;
+		if (megaCount === undefined) megaCount = 0;
 		const mega = (event === 'mega');
 		const megax = (event === 'megax');
 		const megay = (event === 'megay');

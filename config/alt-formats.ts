@@ -373,6 +373,52 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		],
 	},
 	{
+		name: "[Gen 9] IF PFA Draft",
+		searchShow: false,
+
+		mod: 'gen9infinitefusion',
+		ruleset: [
+			'Standard NatDex',
+			'Infinite Fusion Mod', 'IF Move Legality', 'No Event Moves', '!Obtainable Abilities', 'Species Reveal Clause', '!Nickname Clause', 
+			'+ Future', 'Direct Sleep Moves Clause', 'Z-Move Clause',
+			'+item:barbaracite', '+item:chandelurite', '+item:chesnaughtite', '+item:clefablite', '+item:delphoxite', '+item:dragalgite', '+item:dragoninite', '+item:drampanite',
+			'+item:eelektrossite', '+item:emboarite', '+item:excadrite', '+item:falinksite', '+item:feraligite', '+item:floettite', '+item:froslassite', '+item:greninjite',
+			'+item:hawluchanite', '+item:malamarite', '+item:meganiumite', '+item:pyroarite', '+item:scolipite', '+item:scraftinite', '+item:skarmorite', '+item:starminite',
+			'+item:victreebelite', '+item:zygardite',
+			'+pokemon:floetteeternal',
+		],
+		banlist: [
+			'item:deepseatooth', 'item:leek', 'item:stick', 'item:lightball', 'item:kingsrock', 'item:quickpowder', 'item:razorfang', 'item:thickclub',
+			'ability:arenatrap', 'ability:comatose', 'ability:contrary', 'ability:disguise', 'ability:gorillatactics', 'ability:hugepower', 'ability:illusion', 'ability:imposter', 'ability:innardsout',
+			'ability:moody', 'ability:normalize', 'ability:powerconstruct', 'ability:purepower', 'ability:serenegrace', 'ability:shadowtag', 'ability:simple', 'ability:speedboost', 'ability:stakeout', 'ability:stench', 'ability:swordofruin', 'ability:wonderguard', 'ability:zerotohero',
+			'move:bellydrum', 'move:boltbeak', 'move:clangoroussoul', 'move:copycat', 'move:doubleironbash', 'move:electrify', 'move:extremespeed', 'move:filletaway', 'move:fishiousrend', 'move:geomancy', 'move:hiddenpower',
+			'move:lastrespects', 'move:noretreat', 'move:oblivionwing', 'move:pursuit', 'move:quiverdance', 'move:revivalblessing', 'move:shellsmash', 'move:shedtail', 'move:transform', 'move:vcreate', 'move:hail'
+		]
+	},
+	{
+		name: "[Gen 9] IF SGBL Draft",
+		searchShow: false,
+
+		mod: 'gen9infinitefusion',
+		ruleset: [
+			'Standard NatDex',
+			'Infinite Fusion Mod', 'IF Move Legality', 'No Event Moves', '!Obtainable Abilities', 'Species Reveal Clause', '!Nickname Clause', 
+			'+ Future', 'Direct Sleep Moves Clause', 'Z-Move Clause',
+			'+item:barbaracite', '+item:chandelurite', '+item:chesnaughtite', '+item:clefablite', '+item:delphoxite', '+item:dragalgite', '+item:dragoninite', '+item:drampanite',
+			'+item:eelektrossite', '+item:emboarite', '+item:excadrite', '+item:falinksite', '+item:feraligite', '+item:floettite', '+item:froslassite', '+item:greninjite',
+			'+item:hawluchanite', '+item:malamarite', '+item:meganiumite', '+item:pyroarite', '+item:scolipite', '+item:scraftinite', '+item:skarmorite', '+item:starminite',
+			'+item:victreebelite', '+item:zygardite',
+			'+pokemon:floetteeternal',
+		],
+		banlist: [
+			'item:deepseatooth', 'item:heatrock', 'item:damprock', 'item:deepseascale', 'item:leek', 'item:stick', 'item:lightball', 'item:kingsrock', 'item:metalpowder', 'item:quickpowder', 'item:razorfang', 'item:thickclub',
+			'ability:arenatrap', 'ability:comatose', 'ability:contrary', 'ability:disguise', 'ability:gorillatactics', 'ability:hugepower', 'ability:illusion', 'ability:imposter', 'ability:innardsout',
+			'ability:moody', 'ability:normalize', 'ability:powerconstruct', 'ability:purepower', 'ability:serenegrace', 'ability:shadowtag', 'ability:simple', 'ability:speedboost', 'ability:stakeout', 'ability:stench', 'ability:swordofruin', 'ability:wonderguard', 'ability:zerotohero',
+			'move:bellydrum', 'move:boltbeak', 'move:clangoroussoul', 'move:copycat', 'move:doubleironbash', 'move:electrify', 'move:extremespeed', 'move:filletaway', 'move:fishiousrend', 'move:geomancy', 'move:hiddenpower',
+			'move:lastrespects', 'move:noretreat', 'move:oblivionwing', 'move:quiverdance', 'move:revivalblessing', 'move:shellsmash', 'move:shedtail', 'move:transform', 'move:vcreate'
+		]
+	},
+	{
 		name: "[Gen 9] Ins NDL Draft",
 		searchShow: false,
 
@@ -1147,17 +1193,20 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 			'ND AG',
 			'pokemon:arkhaos', 'pokemon:calyrexshadowrider', 'pokemon:diaboromon', 'pokemon:fidgit', 'pokemon:frosthra', 'pokemon:icyall', 'pokemon:koraidon', 'pokemon:miraidon', 'pokemon:nucleon', 'pokemon:omnimon', 'pokemon:raffiti', 'pokemon:raffitiratthew', 'pokemon:reaptide', 'pokemon:sonic', 'pokemon:supersonic', 'pokemon:drybones', 'pokemon:shedinja',
 			'ability:arenatrap', 'ability:moody', 'ability:powerconstruct', 'ability:shadowtag', 'ability:illuminate', 'ability:quickcharge', 'ability:eventhorizon',
-			'move:lastrespects', 'move:shedtail', 'move:vanish', 'move:cinderbreath', 'move:livewire', 'move:permafrost', 'move:achillesheel', 'move:batonpass',
+			'move:lastrespects', 'move:shedtail', 'move:vanish', 'move:cinderbreath', 'move:livewire', 'move:permafrost', 'move:achillesheel', 'move:batonpass', 'move:assist',
+			'move:eevoboost', 'move:shellsmash', 'move:electrify',
 			'item:kingsrock', 'item:trickrock', 'item:focusband',
 			'item:beedrillite', 'item:blazikenite', 'item:cryogonalite', 'item:donphanite', 'item:electrodite', 'item:eevite', 'item:froslassitei', 'item:gengarite', 'item:hydreigonite',
 			'item:inflagetite', 'item:kangaskhanite', 'item:marowakite', 'item:mawilite', 'item:deltamawilite', 'item:medichamite', 'item:deltamedichamite',
 			'item:shadowmewtwonitex', 'item:pidgeotite', 'item:reuniclite', 'item:stunfiskite', 'item:sunflorite', 'item:deltasunflorite', 'item:zygardite', 'item:corrupteddata',
+			'item:raichunitey', 'item:starminite', 'scovillainite', 'malamarite',
 		],
 		restricted: [
 			'Arceus', 'Basculegion-M', 'Blissey-Egho', 'Calyrex-Ice', 'Chansey-Egho', 'Crustle-Delta-Cake', 'Deosectwo', 'Deoxys-Attack', 'Deoxys-Base', 'Dialga', 'Eternatus', 'Flutter Mane', 'Gengar', 'Giratina', 'Gigantusk', 'Gouging Fire', 'Groudon', 'Ho-Oh', 'Hoopa-Delta-Unleashed',
 			'Infermon', 'Inflagetah', 'Iron Bundle', 'Kyodonquaza', 'Kyogre', 'Kyurem-Black', 'Kyurem-White', 'Lugia', 'Lukagon', 'Lunala', 'MagnaAngemon', 'Marshadow', 'Manaphy', 'Melmetal', 'Machinedramon', 'Naganadel', 'MetalEtemon', 'Mewtwo', 'Mewtwo-Shadow', 'Mewthree', 'Necrozma-Dawn-Wings',
 			'Necrozma-Dusk-Mane', 'Oculeus', 'Okuwamon', 'Palkia', 'Rayquaza', 'Reshiram', 'Regigigas', 'SaberLeomon', 'Seikamater', 'Shedinja', 'Slaking', 'Solgaleo', 'Sneasler', 'SkullGreymon', 'Ursaluna-Bloodmoon', 'Urshifu-Single-Strike', 'Urshifu-Rapid-Strike', 'Ufi', 'Volcarona-Delta', 'Xerneas',
 			'Yatagaryu', 'Yveltal', 'WarGreymon', 'Zacian', 'Zekrom', 'Zekyushiram', 'Mew', 'Paldiatina', 'Piedmon', 'MetalGarurumon', 'MetalSeadramon', 'Jupiter', 'Mars', 'Myotismon', 'Venus', 'Mercury', 'YatagaryuGossamir', 'Puppetmon',
+			'Arbok-Jessie', 'Cheninphox', 'Tiptron'
 		],
 	},
 	{
