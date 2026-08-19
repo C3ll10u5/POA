@@ -421,7 +421,7 @@ export const FormatsData: import('../../../sim/dex-species').ModdedSpeciesFormat
 	},
 	alakazam: {
 		inherit: true,
-		tier: "UU",
+		tier: "UUBL",
 		doublesTier: "DOU",
 	},
 	machop: {
