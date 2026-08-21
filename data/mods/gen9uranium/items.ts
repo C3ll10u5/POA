@@ -157,7 +157,7 @@ export const Items: import('../../../sim/dex-items').ModdedItemDataTable = {
 		name: "Dark Dramsamaite",
 		desc: "If held by a Dramsama, this item allows it to Mega Evolve in battle.",
 		spritenum: -2,
-		megaStone: { "Dramsama": "Dramsama-Mega" },
+		megaStone: { "Dramsama": "Dramsama-Dark-Mega" },
 		itemUser: ["Dramsama"],
 		onTakeItem(item, source) {
 			return !item.megaStone?.[source.baseSpecies.baseSpecies];
