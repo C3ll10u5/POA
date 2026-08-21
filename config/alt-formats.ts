@@ -520,7 +520,7 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 		banlist: [
 			'AG', 'Uber',
 			'ability:arenatrap', 'ability:shadowtag',
-			'item:souldew', 'item:kingsrock', 'item:razorfang', 'item:quickclaw', 'item:damprock',
+			'item:souldew', 'item:kingsrock', 'item:razorfang', 'item:quickclaw', 'item:damprock', 'item:lightclay',
 			'move:batonpass', 'move:swagger', 'move:shedtail', 'move:boomburst'
 		],
 	},
@@ -551,7 +551,7 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 
 		mod: 'gen9mariomon',
 		ruleset: ['Standard NatDex', 'Little Cup', 'Terastal Clause', 'Z-Move Clause', 'Species Reveal Clause', 'Baton Pass Stat Trap Clause'],
-		banlist: ['pokemon:gushen', 'move:electrify', 'item:kingsrock'],
+		banlist: ['pokemon:gushen', 'pokemon:fighterfly', 'move:electrify', 'item:kingsrock'],
 	},
 	{
 		name: "[Gen 9] Mariomon Monotype",
