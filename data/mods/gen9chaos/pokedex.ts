@@ -3000,6 +3000,21 @@ export const Pokedex: ModdedSpeciesDataTable = {
 		natDexTier: "OU",
 		doublesTier: "DOU",
 	},
+	wistyxi: {
+		num: 3175,
+		name: "Wistyxi",
+		types: ["Ghost", "Water"],
+		baseStats: { hp: 89, atk: 57, def: 80, spa: 104, spd: 113, spe: 71 },
+		abilities: { 0: "Neutralizing Gas", 1: "Clear Body", H: "Wandering Spirit" },
+		heightm: 1.2,
+		weightkg: 16.1,
+		color: "Purple",
+		tags: ["Pokeathlon"],
+		eggGroups: ["Pokeathlon", "POA"],
+		tier: "OU",
+		natDexTier: "OU",
+		doublesTier: "DOU",
+	},
 };
 
 const Manual = Utils.deepClone(Pokedex);
