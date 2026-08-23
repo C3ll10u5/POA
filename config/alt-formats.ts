@@ -401,7 +401,7 @@ export const Formats: import('../sim/dex-formats').FormatList = [
 
 		mod: 'gen9infinitefusion',
 		ruleset: [
-			'Standard NatDex',
+			'Standard NatDex', '!Species Clause',
 			'Infinite Fusion Mod', 'IF Move Legality', 'No Event Moves', '!Obtainable Abilities', 'Species Reveal Clause', '!Nickname Clause', 
 			'+ Future', 'Direct Sleep Moves Clause', 'Z-Move Clause',
 			'+item:barbaracite', '+item:chandelurite', '+item:chesnaughtite', '+item:clefablite', '+item:delphoxite', '+item:dragalgite', '+item:dragoninite', '+item:drampanite',
