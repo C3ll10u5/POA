@@ -13281,7 +13281,7 @@ export const Moves: import('../../../sim/dex-moves').ModdedMoveDataTable = {
 
 	permafrost: {
 		num: 0,
-		basePower: 100,
+		basePower: 85,
 		accuracy: 100,
 		category: "Physical",
 		name: "Permafrost",

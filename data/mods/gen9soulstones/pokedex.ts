@@ -3759,9 +3759,9 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 		tier: "LC",
 		natDexTier: "LC",
 	},
-	shellnite: {
+	shellsea: {
 		num: 204,
-		name: "Shellnite",
+		name: "Shellsea",
 		baseSpecies: "Shellos-Orion",
 		types: ['Dragon', 'Water'],
 		baseStats: { hp: 64, atk: 40, def: 40, spa: 75, spd: 59, spe: 57 },
@@ -3969,9 +3969,9 @@ export const Pokedex: import('../../../sim/dex-species').ModdedSpeciesDataTable 
 		tier: "OU",
 		natDexTier: "OU",
 	},
-	gastronair: {
+	gastrodra: {
 		num: 205,
-		name: "Gastronair",
+		name: "Gastrodra",
 		baseSpecies: "Gastrodon-Orion",
 		types: ['Dragon', 'Water'],
 		baseStats: { hp: 95, atk: 50, def: 57, spa: 110, spd: 88, spe: 85 },

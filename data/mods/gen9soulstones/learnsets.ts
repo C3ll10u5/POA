@@ -20461,7 +20461,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			zenheadbutt: ["9M"],
 		},
 	},
-	shellnite: {
+	shellsea: {
 		learnset: {
 			amnesia: ["9E"],
 			ancientglare: ["9M"],
@@ -22103,7 +22103,7 @@ export const Learnsets: import('../../../sim/dex-species').ModdedLearnsetDataTab
 			zenheadbutt: ["9M"],
 		},
 	},
-	gastronair: {
+	gastrodra: {
 		learnset: {
 			ancientglare: ["9M"],
 			aquaring: ["9L13"],
