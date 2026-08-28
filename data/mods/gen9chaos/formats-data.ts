@@ -3193,6 +3193,10 @@ export const FormatsData: import("../../../sim/dex-species").ModdedSpeciesFormat
 		inherit: true,
 		natDexTier: "UU",
 	},
+	obliteryx: {
+		inherit: true,
+		natDexTier: "OU",
+	},
 	arceusbug: {
 		inherit: true,
 		natDexTier: "Uber",
