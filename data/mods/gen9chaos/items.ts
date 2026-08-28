@@ -170,6 +170,61 @@ export const Items: ModdedItemDataTable = {
 		isNonstandard: null,
 		gen: 9,
 	},
+	scolipite: {
+		inherit: true,
+		isNonstandard: null,
+		gen: 9,
+	},
+	scraftinite: {
+		inherit: true,
+		isNonstandard: null,
+		gen: 9,
+	},
+	eelektrossite: {
+		inherit: true,
+		isNonstandard: null,
+		gen: 9,
+	},
+	pyroarite: {
+		inherit: true,
+		isNonstandard: null,
+		gen: 9,
+	},
+	malamarite: {
+		inherit: true,
+		isNonstandard: null,
+		gen: 9,
+	},
+	barbaracite: {
+		inherit: true,
+		isNonstandard: null,
+		gen: 9,
+	},
+	dragalgite: {
+		inherit: true,
+		isNonstandard: null,
+		gen: 9,
+	},
+	falinksite: {
+		inherit: true,
+		isNonstandard: null,
+		gen: 9,
+	},
+	raichunitex: {
+		inherit: true,
+		isNonstandard: null,
+		gen: 9,
+	},
+	raichunitey: {
+		inherit: true,
+		isNonstandard: null,
+		gen: 9,
+	},
+	staraptite: {
+		inherit: true,
+		isNonstandard: null,
+		gen: 9,
+	},
 
 	// POA
 	///////////////////////////////////////////////////////////////////
