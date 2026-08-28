@@ -3709,4 +3709,52 @@ export const FormatsData: import("../../../sim/dex-species").ModdedSpeciesFormat
 		inherit: true,
 		natDexTier: "OU",
 	},
+	cerebaal: {
+		inherit: true,
+		natDexTier: "RU",
+	},
+	dryguaromega: {
+		inherit: true,
+		natDexTier: "RU",
+	},
+	gourgeistsento: {
+		inherit: true,
+		natDexTier: "RU",
+	},
+	kinette: {
+		inherit: true,
+		natDexTier: "RU",
+	},
+	komoduel: {
+		inherit: true,
+		natDexTier: "RU",
+	},
+	roseradegigas: {
+		inherit: true,
+		natDexTier: "RU",
+	},
+	sciorocco: {
+		inherit: true,
+		natDexTier: "RU",
+	},
+	tofagrifmega: {
+		inherit: true,
+		natDexTier: "RU",
+	},
+	utensitilemega: {
+		inherit: true,
+		natDexTier: "RU",
+	},
+	wistyxi: {
+		inherit: true,
+		natDexTier: "RU",
+	},
+	empoleon: {
+		inherit: true,
+		natDexTier: "RU",
+	},
+	thundurus: {
+		inherit: true,
+		natDexTier: "RU",
+	},
 };
